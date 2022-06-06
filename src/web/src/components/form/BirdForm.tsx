@@ -30,32 +30,45 @@ const formSubmitHandler: SubmitHandler<IBirdForm> = (data: IBirdForm) => {
   console.log("form data is", data)
 }
 const birdForm = (
-  <form onSubmit={handleSubmit(formSubmitHandler)}>
+  <form onSubmit={handleSubmit(formSubmitHandler)} className="form">
     <label htmlFor="projectName">Project Name *</label>
+    <br/>
     <input {...register('projectName')}/>
     <br/>
+    <br/>
     <label htmlFor="date">Last updated, *</label>
+    <br/>
     <input defaultValue={Date().toLocaleString()} {...register('date')}/>
     <br/>
+    <br/>
     <label htmlFor="lat">Lat, *</label>
+    <br/>
     <input defaultValue={props.lat} {...register('lat')}/>
     <br/>
+    <br/>
     <label htmlFor="lng">Lng, *</label>
+    <br/>
     <input defaultValue={props.lng} {...register('lng')}/>
     <br/>
+    <br/>
     <label htmlFor="status">Status, *</label>
+    <br/>
     <select {...register("status")}>
       <option value="Eggs">Eggs</option>
       <option value="Hatched">Hatched</option>
       <option value="Abandoned">Abandoned</option>
     </select>
     <br/>
+    <br/>
     <label htmlFor="Progress">Progress, *</label>
+    <br/>
     <select {...register("progress")}>
       <option value="In progress">In progress</option>
       <option value="Done">Done</option>
       <option value="Cancelled">Cancelled</option>
     </select>
+    <br/>
+    <br/>
     <input type="submit" onClick={() => handleClick()}/>
     <button type="close" onClick={() => props.changeForm(false)} >{close ? "Cancel" : "Close"}</button>
   </form>

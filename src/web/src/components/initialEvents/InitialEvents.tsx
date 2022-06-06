@@ -9,6 +9,7 @@ function InitialEvents(props) {
     const map = useMap();
     const markerRef = useRef(null)
     const [form, setForm] = useState(false);
+    const popupElRef = useRef(null);
 
     useEffect(() => {
       map.locate().on("locationfound", function (e) {
@@ -33,7 +34,11 @@ function InitialEvents(props) {
 
     function handleClick() {
       setForm(true)
+      if (!popupElRef.current) return;
+      // popupElRef.current._close();
+      map.closePopup();
     }
+
 
     useEffect(() => {
       map.locate().on("locationerror", function (e) {
@@ -48,8 +53,13 @@ function InitialEvents(props) {
       ) : (
         <div>
           <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
-            <Popup> 
-              {position.lat} {position.lng} <br/> {props.name} {props.email}
+            <Popup ref={popupElRef}>
+                <p>Lat: {position.lat}</p>
+                <p>Lng: {position.lng}</p>
+                <p>{props.name}</p> 
+                <p>{props.email}</p>
+                <p>meira er hægt að bæta hér!</p>
+                <br/>
                 <button onClick={handleClick}>
                   Create Landmark
                 </button>

@@ -41,22 +41,20 @@ body {
   z-index: 1000;
   top: 50%;
   left: 50%;
-  width: 50vw;
-  height: 50vh;
   transform: translate(-50%,-50%);
 }
 
 .box {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 30vh 20vh;
-  height: 50vh;
-  width: 50vw;
-  background: #F7E4E0;
-  grid-template-areas: 
-  "header header"
-  "main main";
-  border-radius: 50px;
+  background: white;
   border: 3px solid black;
   margin: 0;
 }
+
+.form {
+  margin: auto;
+  border: 3px solid green;
+
+}
+
