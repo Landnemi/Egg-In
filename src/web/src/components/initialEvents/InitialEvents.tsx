@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useMemo} from 'react'
 import { Marker, Popup, useMap} from 'react-leaflet'
 import Loading from '../loading/Loading'
 import Form from '../form/BirdForm'
+import { signOut } from "next-auth/react"
 
 
 function InitialEvents(props) {
@@ -60,9 +61,8 @@ function InitialEvents(props) {
                 <p>{props.email}</p>
                 <p>meira er hægt að bæta hér!</p>
                 <br/>
-                <button onClick={handleClick}>
-                  Create Landmark
-                </button>
+                <button onClick={handleClick}>Create Landmark</button>
+                <button onClick={() => signOut()}>Sign out</button>
               </Popup>
           </Marker>
 

@@ -15,8 +15,6 @@ export default function Home() {
         <div>
           <div id="map">
             <MapWithNoSSR name={session.user?.name} email={session.user?.email}/>
-            Signed in as {session.user?.name} <br/>
-            <button onClick={() => signOut()}>Sign out</button>
           </div>
         </div>
       </main>
@@ -24,6 +22,7 @@ export default function Home() {
 
   return (
     <div className="login">
+      <h1>Welcome to fuglari.is</h1>
       <button onClick={() => signIn()}>Sign in</button>
     </div>
   )

@@ -22,17 +22,25 @@ body {
 }
 
 .login {
+  position: absolute;
+  margin: auto;
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 30vh 20vh;
-  height: 50vh;
-  width: 50vw;
-  background: #F7E4E0;
-  grid-template-areas: 
-  "header header"
-  "main main";
-  border: 3px solid black;
-  margin: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.login button  {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
 }
 
 #over{
