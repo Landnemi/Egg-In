@@ -3,17 +3,16 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import InitialEvents from "../initialEvents/InitialEvents";
+import { useState } from "react";
 
 
 
 
-const Map = () => {
+const Map = (props) => {
 
   
- //minZoom={13}
   return (
     <> 
-    
       <MapContainer
       center={[33.43742900592779, -40.618167515754536]}
       zoom={16}
@@ -27,7 +26,7 @@ const Map = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <InitialEvents/>
+      <InitialEvents name={props.name} email={props.email} />
     </MapContainer>   
   </>
   );
