@@ -190,7 +190,7 @@ FROM public.memberships";
                 return await connection.QuerySingleOrDefaultAsync<Landmark>(queryBuilder.ToString());
             }
         }
-        public string createLandmarkSQL = $@"INSERT INTO public.landmarks (dataset_id, title, latitude, longitude, status, progress) VALUES (@DatasetId, @Title, @Latitude, @Longitude, @Status, @Progress)";
+        public string createLandmarkSQL = $@"INSERT INTO public.landmarks (dataset_id, latitude, longitude, status, progress) VALUES (@DatasetId, @Latitude, @Longitude, @Status, @Progress)";
         public async Task CreateLandmark(NewLandmark newLandmark)
         {
             StringBuilder queryBuilder = new StringBuilder(createLandmarkSQL);
