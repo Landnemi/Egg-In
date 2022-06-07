@@ -17,7 +17,7 @@ namespace FuglariApi.Repositories
         private string connectionString;
         public ProjectRepository(IOptions<PsqlSettings> psqlSettings)
         {
-            connectionString = "User ID=postgres;Host=178.128.33.244;Port=5432;Database=Fuglari;password=b1rdm4n;Pooling=true;Connection Lifetime=0;Encrypt=False;TrustServerCertificate=True"; // psqlSettings.Value.ConnectionString;
+            connectionString = "User ID=postgres;Host=178.128.33.244;Port=5432;Database=Fuglari;password=b1rdm4n;Pooling=true;Connection Lifetime=0;TrustServerCertificate=True"; // psqlSettings.Value.ConnectionString;
             //connectionString = "User ID=postgres;Host=localhost;Port=5432;Database=Fuglari;password=b1rdm4n;Pooling=true;Connection Lifetime=0;Encrypt=False;TrustServerCertificate=True"; // psqlSettings.Value.ConnectionString;
 
         }
