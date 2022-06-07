@@ -23,7 +23,9 @@ namespace FuglariApi
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<Startup>()
+                    .UseUrls(urls: new String[] { "http://*:5000", "https://localhost:5000" });
+
                 });
     }
 }
