@@ -15,7 +15,7 @@ namespace FuglariApi.Repositories
         private string connectionString;
         public UserRepository(IOptions<PsqlSettings> psqlSettings)
         {
-            connectionString = psqlSettings.Value.ConnectionString;
+            connectionString = "User ID=postgres;Host=178.128.33.244;Port=5432;Database=Fuglari;password=b1rdm4n;Pooling=true;Connection Lifetime=0;"; // psqlSettings.Value.ConnectionString;
         }
 
 
