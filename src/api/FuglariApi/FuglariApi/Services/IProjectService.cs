@@ -22,5 +22,6 @@ namespace FuglariApi.Services
         public Task AddUserToProject(string newPersonEmail, int projectId, string inviterEmail);
         public Task UpdateLandmark(Landmark landmark);
         public Task<IEnumerable<Dataset>> GetDatasetsForProject(int projectId);
+        Task<IEnumerable<DatasetDto>> GetDatasetsForPerson(string email);
     }
 }

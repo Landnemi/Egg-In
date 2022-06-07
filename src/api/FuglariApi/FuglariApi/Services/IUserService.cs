@@ -13,5 +13,7 @@ namespace FuglariApi.Services
         Task<User> GetById(int userId);
         Task<IEnumerable<User>> GetAllUsers();
         Task<User> Register(RegisterRequest request);
+        Task<User> GetUserByEmail(string email);
+        Task<User> GetOrCreateUser(string email);
     }
 }

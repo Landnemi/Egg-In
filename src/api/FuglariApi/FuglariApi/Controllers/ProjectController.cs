@@ -1,4 +1,5 @@
-﻿using FuglariApi.RequestModels;
+﻿using FuglariApi.Models;
+using FuglariApi.RequestModels;
 using FuglariApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,7 +21,7 @@ namespace FuglariApi.Controllers
             projectService = service;
         }
 
-        [HttpGet("projects/{email}")]
+        [HttpGet("user/{email}")]
         public async Task<IActionResult> GetProjectsForPerson(string email)
         {
             return Ok(await projectService.GetProjectsForUser(email));
@@ -32,10 +33,10 @@ namespace FuglariApi.Controllers
             await projectService.CreateProject(request);
             return Ok();
         }
-        [HttpPost("project/dataset")]
+        [HttpPost("dataset")]
         public async Task<IActionResult> CreateDataset([FromBody] CreateDatasetRequest createDatasetRequest)
         {
-            await projectService.CreateDataset(createDatasetRequest); 
+            await projectService.CreateDataset(createDatasetRequest);
             return Ok();
         }
         [HttpGet("{projectId}/datasets")]
@@ -43,6 +44,13 @@ namespace FuglariApi.Controllers
         {
             return Ok(await projectService.GetDatasetsForProject(projectId));
         }
+
+        [HttpGet("/datasets/{email}")]
+        public async Task<IActionResult> GetDatasetsForPerson(string email)
+        {
+            return Ok(await projectService.GetDatasetsForPerson(email));
+        }
+       
 
         [HttpPost("landmark")]
         public async Task<IActionResult> AddLandmark([FromBody] CreateLandmarkRequest createLandmarkRequest)
@@ -68,6 +76,11 @@ namespace FuglariApi.Controllers
             await projectService.AddObsevation(request);
             return Ok();
         }
-
+        [HttpPatch("landmarks")]
+        public async Task<IActionResult> UpdateLandmark([FromBody] Landmark landmark)
+        {
+            await projectService.UpdateLandmark(landmark);
+            return Ok();
+        }
     }
 }

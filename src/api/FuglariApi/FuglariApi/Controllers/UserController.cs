@@ -18,6 +18,11 @@ namespace FuglariApi.Controllers
         {
             userService = service; 
         }
+        [HttpGet("user/{email}")]
+        public async Task<IActionResult> GetUserByEmail(string email)
+        {
+            return Ok(await userService.GetUserByEmail(email));
+        }
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -28,6 +33,13 @@ namespace FuglariApi.Controllers
         {
             return Ok(await userService.Register(registerRequest));
         }
-       
+
+        [HttpGet("get_or_create/{email}")]
+        public async Task<IActionResult> GetOrCreateUser(string email)
+        {
+            return Ok(await userService.GetOrCreateUser(email));
+
+        }
+
     }
 }

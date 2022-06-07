@@ -142,6 +142,33 @@ namespace FuglariApi.Services
             return await projectRepository.GetDatasetById(datasetId);
         }
 
+        public async Task<IEnumerable<DatasetDto>> GetDatasetsForPerson(string email)
+        {
+            User user = await userRepository.GetUserByEmail(email);
+            if(user == null)
+            {
+                throw new ErrorCodeException(401, "USER", "User with email " + email + " does not exist.");
+            }
+            IEnumerable<Project> projects = await GetProjectsForUser(email);
+            List<DatasetDto> datasetDtoList = new List<DatasetDto>();
+            foreach(Project project in projects)
+            {
+                IEnumerable<Dataset> _datasets = await projectRepository.GetDatasetsForProject(project.Id);
+                foreach (Dataset d in _datasets)
+                {
+                    IEnumerable<Landmark> l = await projectRepository.GetLandmarksForDataset(d.Id);
+                    var temp = new DatasetDto
+                    {
+                        Landmarks = l,
+                        Title = d.Title,
+                        Id = d.Id
+                    };
+                    datasetDtoList.Add(temp);
+                }
+            }
+            return datasetDtoList;
+        }
+
         public async Task<IEnumerable<Dataset>> GetDatasetsForProject(int projectId)
         {
             return await projectRepository.GetDatasetsForProject(projectId);
