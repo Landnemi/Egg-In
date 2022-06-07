@@ -118,7 +118,6 @@ namespace FuglariApi.Services
 
             NewLandmark newLandmark = new NewLandmark();
             newLandmark.DatasetId = request.DatasetId;
-            newLandmark.Species = request.Species;
             newLandmark.Status = request.Status;
             newLandmark.Progress = request.Progress;
             newLandmark.Latitude = request.Latitude;

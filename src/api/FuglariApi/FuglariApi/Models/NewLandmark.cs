@@ -8,10 +8,8 @@ namespace FuglariApi.Models
     public class NewLandmark
     {
         public int DatasetId { get; set; }
-        public int Title { get; set; }
         public float Longitude { get; set; }
         public float Latitude { get; set; }
-        public string Species { get; set; }
         public int Status { get; set; }
         public int Progress { get; set; }
     }

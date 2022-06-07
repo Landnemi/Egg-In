@@ -74,7 +74,6 @@ id as {nameof(Landmark.Id)},
 dataset_id as {nameof(Landmark.DatasetId)},
 longitude as {nameof(Landmark.Longitude)},
 latitude as  {nameof(Landmark.Latitude)},
-species as {nameof(Landmark.Species)},
 status as {nameof(Landmark.Status)},
 progress as {nameof(Landmark.Progress)}
 FROM public.landmarks";
@@ -104,7 +103,7 @@ FROM public.landmarks";
                 return await connection.QueryAsync<Project>(queryBuilder.ToString(), new { UserId =userId });
             }
         }
-        private string updateLandmarkSQL = $@"UPDATE public.landmarks l SET species = @Species, status = @Status, progress = @Progress ";
+        private string updateLandmarkSQL = $@"UPDATE public.landmarks l SET  status = @Status, progress = @Progress ";
         public async Task UpdateLandmark(Landmark landmark)
         {
             StringBuilder queryBuilder = new StringBuilder(updateLandmarkSQL);
@@ -112,7 +111,7 @@ FROM public.landmarks";
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                await connection.ExecuteAsync(queryBuilder.ToString(), new {Species=landmark.Species,Status=landmark.Status, Progress=landmark.Progress });
+                await connection.ExecuteAsync(queryBuilder.ToString(), new {Status=landmark.Status, Progress=landmark.Progress });
                 return;
             }
         }
@@ -191,7 +190,7 @@ FROM public.memberships";
                 return await connection.QuerySingleOrDefaultAsync<Landmark>(queryBuilder.ToString());
             }
         }
-        public string createLandmarkSQL = $@"INSERT INTO public.landmarks (dataset_id, title, species, latitude, longitude, status, progress) VALUES (@DatasetId, @Title, @Species, @Latitude, @Longitude, @Status, @Progress)";
+        public string createLandmarkSQL = $@"INSERT INTO public.landmarks (dataset_id, title, latitude, longitude, status, progress) VALUES (@DatasetId, @Title, @Latitude, @Longitude, @Status, @Progress)";
         public async Task CreateLandmark(NewLandmark newLandmark)
         {
             StringBuilder queryBuilder = new StringBuilder(createLandmarkSQL);

@@ -8,7 +8,6 @@ namespace FuglariApi.RequestModels
     public class CreateLandmarkRequest
     {
         public string Email { get; set; }
-        public string Title { get; set; }
         public int DatasetId { get; set; }
         public string Species { get; set; }
         public float Latitude { get;  set; }

@@ -50,8 +50,6 @@ namespace FuglariApi.Controllers
         {
             return Ok(await projectService.GetDatasetsForPerson(email));
         }
-       
-
         [HttpPost("landmark")]
         public async Task<IActionResult> AddLandmark([FromBody] CreateLandmarkRequest createLandmarkRequest)
         {
@@ -80,6 +78,12 @@ namespace FuglariApi.Controllers
         public async Task<IActionResult> UpdateLandmark([FromBody] Landmark landmark)
         {
             await projectService.UpdateLandmark(landmark);
+            return Ok();
+        }
+        [HttpPost("add")]
+        public async Task<IActionResult> AddUserToProject([FromBody] AddPersonRequest request)
+        {
+            await projectService.AddUserToProject(request.inviteeEmail, request.projectId, request.inviterEmail);
             return Ok();
         }
     }
