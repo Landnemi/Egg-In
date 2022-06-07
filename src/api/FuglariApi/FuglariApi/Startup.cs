@@ -57,6 +57,10 @@ namespace FuglariApi
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FuglariApi v1"));
