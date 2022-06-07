@@ -57,7 +57,6 @@ C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\bin\Debu
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\obj\Debug\net5.0\FuglariApi.csproj.AssemblyReference.cache
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\obj\Debug\net5.0\FuglariApi.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\obj\Debug\net5.0\FuglariApi.AssemblyInfoInputs.cache
@@ -74,3 +73,4 @@ C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\obj\Debu
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\obj\Debug\net5.0\ref\FuglariApi.dll
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\obj\Debug\net5.0\FuglariApi.pdb
 C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\obj\Debug\net5.0\FuglariApi.genruntimeconfig.cache
+C:\Users\Benedikt\Desktop\projects\Egg-In\src\api\FuglariApi\FuglariApi\bin\Debug\net5.0\libman.json

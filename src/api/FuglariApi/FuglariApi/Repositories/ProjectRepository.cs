@@ -17,7 +17,7 @@ namespace FuglariApi.Repositories
         private string connectionString;
         public ProjectRepository(IOptions<PsqlSettings> psqlSettings)
         {
-            connectionString = "User ID=postgres;Host=178.128.33.244;Port=5432;Database=Fuglari;password=b1rdm4n;Pooling=true;Connection Lifetime=0;SSL Mode=Disable;TrustServerCertificate=True"; // psqlSettings.Value.ConnectionString;
+            connectionString = "User ID=postgres;Host=178.128.33.244;Port=5432;Database=Fuglari;password=b1rdm4n;Pooling=true;SSL Mode=Disable;TrustServerCertificate=True"; // psqlSettings.Value.ConnectionString;
             //connectionString = "User ID=postgres;Host=localhost;Port=5432;Database=Fuglari;password=b1rdm4n;Pooling=true;Connection Lifetime=0;Encrypt=False;TrustServerCertificate=True"; // psqlSettings.Value.ConnectionString;
 
         }
@@ -116,7 +116,7 @@ FROM public.landmarks";
             }
         }
         private string addUserToProjectSQL = $@"INSERT INTO public.memberships (user_id, project_id) values (@UserId, @ProjectId)";
-        public async Task AddUserToProject(int projectId, int userId)
+        public async Task AddUserToProject(int userId, int projectId)
         {
             StringBuilder queryBuilder = new StringBuilder(addUserToProjectSQL);
             using (var connection = new NpgsqlConnection(connectionString))
