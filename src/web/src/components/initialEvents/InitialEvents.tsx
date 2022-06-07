@@ -16,7 +16,6 @@ function InitialEvents(props) {
     useEffect(() => {
       map.locate().on("locationfound", function (e) {
         setPosition(e.latlng);
-        console.log("hallo", e.latlng)
         map.flyTo(e.latlng, map.getZoom(), {animate: false});
       });
     }, []);
@@ -56,7 +55,7 @@ function InitialEvents(props) {
         <div>
           <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
             <Popup ref={popupElRef}>
-                <UsersComponent />
+                <UsersComponent email={props.email}/>
                 <button onClick={handleClick}>Create Landmark</button>
                 <button onClick={() => signOut()}>Sign out</button>
               </Popup>
