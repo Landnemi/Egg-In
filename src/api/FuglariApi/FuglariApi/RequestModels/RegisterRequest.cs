@@ -1,0 +1,12 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace FuglariApi.RequestModels
+{
+    public class RegisterRequest
+    {
+        public string Email { get; set; }
+    }
+}
