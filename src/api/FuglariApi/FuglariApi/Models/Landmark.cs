@@ -12,7 +12,6 @@ namespace FuglariApi.Models
         public float Longitude { get; set; }
         public DateTime DateCreated { get; set; }
         public float Latitude { get; set; }
-        public string Species { get; set; }
         public int Status { get; set; }
         public int Progress { get; set; }
     }
