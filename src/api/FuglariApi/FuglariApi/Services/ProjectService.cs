@@ -20,7 +20,7 @@ namespace FuglariApi.Services
         public async Task AddObsevation(PostObservationRequest request)
         {
             User user = await userRepository.GetUserByEmail(request.Email);
-            Landmark landmark = await projectRepository.GetLandmarkById(request.LandMarkId);
+            LandmarkDto landmark = await projectRepository.GetLandmarkById(request.LandMarkId);
             if (landmark == null)
             {
                 throw new ErrorCodeException(401, "Landmark", "Landmark does not exist");
@@ -155,7 +155,7 @@ namespace FuglariApi.Services
                 IEnumerable<Dataset> _datasets = await projectRepository.GetDatasetsForProject(project.Id);
                 foreach (Dataset d in _datasets)
                 {
-                    IEnumerable<Landmark> l = await projectRepository.GetLandmarksForDataset(d.Id);
+                    IEnumerable<LandmarkDto> l = await projectRepository.GetLandmarksForDataset(d.Id);
                     var temp = new DatasetDto
                     {
                         Landmarks = l,
@@ -173,12 +173,12 @@ namespace FuglariApi.Services
             return await projectRepository.GetDatasetsForProject(projectId);
         }
 
-        public async Task<Landmark> GetLandmarkById(int landmarkId)
+        public async Task<LandmarkDto> GetLandmarkById(int landmarkId)
         {
             return await projectRepository.GetLandmarkById(landmarkId);
         }
 
-        public async Task<IEnumerable<Landmark>> GetLandmarksForDataset(int datasetId)
+        public async Task<IEnumerable<LandmarkDto>> GetLandmarksForDataset(int datasetId)
         {
             return await projectRepository.GetLandmarksForDataset(datasetId);
         }

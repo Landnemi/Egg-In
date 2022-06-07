@@ -70,21 +70,23 @@ FROM public.datasets";
         }
 
         private string selectLandmarksSQL = $@"SELECT 
-id as {nameof(Landmark.Id)},
-dataset_id as {nameof(Landmark.DatasetId)},
-longitude as {nameof(Landmark.Longitude)},
-latitude as  {nameof(Landmark.Latitude)},
-status as {nameof(Landmark.Status)},
-progress as {nameof(Landmark.Progress)}
-FROM public.landmarks";
-        public async Task<IEnumerable<Landmark>> GetLandmarksForDataset(int datasetId)
+l.id as {nameof(LandmarkDto.Id)},
+l.dataset_id as {nameof(LandmarkDto.DatasetId)},
+l.longitude as {nameof(LandmarkDto.Longitude)},
+l.latitude as  {nameof(LandmarkDto.Latitude)},
+l.status as {nameof(LandmarkDto.Status)},
+l.progress as {nameof(LandmarkDto.Progress)},
+d.title as {nameof(LandmarkDto.DatasetTitle)}
+FROM public.landmarks l join public.datasets d
+on l.dataset_id = d.id";
+        public async Task<IEnumerable<LandmarkDto>> GetLandmarksForDataset(int datasetId)
         {
             StringBuilder queryBuilder = new StringBuilder(selectLandmarksSQL);
             queryBuilder.Append(" where dataset_id = " + datasetId);
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                return await connection.QueryAsync<Landmark>(queryBuilder.ToString());
+                return await connection.QueryAsync<LandmarkDto>(queryBuilder.ToString());
             }
         }
         private string selectProjectMembershipsSQL = $@"SELECT 
@@ -180,14 +182,14 @@ FROM public.memberships";
             }
         }
 
-        public async Task<Landmark> GetLandmarkById(int landmarkId)
+        public async Task<LandmarkDto> GetLandmarkById(int landmarkId)
         {
             StringBuilder queryBuilder = new StringBuilder(selectLandmarksSQL);
-            queryBuilder.Append(" where id = " + landmarkId);
+            queryBuilder.Append(" where l.id = " + landmarkId);
             using (var connection = new NpgsqlConnection(connectionString))
             {
                 connection.Open();
-                return await connection.QuerySingleOrDefaultAsync<Landmark>(queryBuilder.ToString());
+                return await connection.QuerySingleOrDefaultAsync<LandmarkDto>(queryBuilder.ToString());
             }
         }
         public string createLandmarkSQL = $@"INSERT INTO public.landmarks (dataset_id, latitude, longitude, status, progress) VALUES (@DatasetId, @Latitude, @Longitude, @Status, @Progress)";

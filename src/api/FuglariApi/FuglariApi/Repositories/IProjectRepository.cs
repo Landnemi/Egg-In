@@ -12,7 +12,7 @@ namespace FuglariApi.Repositories
         public Task<Project> GetProjectById(int projectId);
         public Task<IEnumerable<Project>> GetProjectsForUser(int userId);
         public Task<IEnumerable<Dataset>> GetDatasetsForProject(int projectId);
-        public Task<IEnumerable<Landmark>> GetLandmarksForDataset(int datasetId);
+        public Task<IEnumerable<LandmarkDto>> GetLandmarksForDataset(int datasetId);
         public Task AddUserToProject(int projectId, int userId);
         public Task AddObservationToLandmark(NewObservation observation);
         public Task CreateDataset(NewDataset dataset);
@@ -20,7 +20,7 @@ namespace FuglariApi.Repositories
         public Task CreateProject(NewProject request);
         public Task<Membership> CheckMembership(int userId, int projectId);
         public Task<Dataset> GetDatasetById(int datasetId);
-        public Task<Landmark> GetLandmarkById(int landmarkId);
+        public Task<LandmarkDto> GetLandmarkById(int landmarkId);
         public Task CreateLandmark(NewLandmark newLandmark);
         public Task<IEnumerable<Observation>> GetObservationsForLandmark(int landmarkId);
     }

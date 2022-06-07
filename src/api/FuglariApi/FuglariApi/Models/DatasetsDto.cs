@@ -13,6 +13,6 @@ namespace FuglariApi.Models
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public IEnumerable<Landmark> Landmarks { get; set; }
+        public IEnumerable<LandmarkDto> Landmarks { get; set; }
     }
 }
