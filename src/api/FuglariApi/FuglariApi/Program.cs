@@ -15,7 +15,7 @@ namespace FuglariApi
         {
             var config = new ConfigurationBuilder()
                   .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                  .AddJsonFile("appsettings.json").Build();
+                  .AddJsonFile("appsettings.json", optional: false).Build();
             CreateHostBuilder(args).Build().Run();
         }
 
