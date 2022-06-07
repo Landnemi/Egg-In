@@ -13,6 +13,11 @@ function InitialEvents(props) {
     const [form, setForm] = useState(false);
     const popupElRef = useRef(null);
 
+
+  const {userData} = props;
+
+    console.log(position)
+
     useEffect(() => {
       map.locate().on("locationfound", function (e) {
         setPosition(e.latlng);
@@ -35,7 +40,7 @@ function InitialEvents(props) {
 
     function handleClick() {
       setForm(true)
-      if (!popupElRef.current) return;
+      // if (!popupElRef.current) return;
       // popupElRef.current._close();
       map.closePopup();
     }
@@ -53,14 +58,14 @@ function InitialEvents(props) {
       <Loading/>     
       ) : (
         <div>
-          <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
+          {/* <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
             <Popup ref={popupElRef}>
                 <UsersComponent email={props.email}/>
                 <button onClick={handleClick}>Create Landmark</button>
                 <button onClick={() => signOut()}>Sign out</button>
               </Popup>
-          </Marker>
-
+          </Marker> */}
+          
           { form ? (<Form name={props.name} email={props.email} lat={position.lat} lng={position.lng} changeForm={form => setForm(form)}/>) : (<></>)}
         </div>
       );

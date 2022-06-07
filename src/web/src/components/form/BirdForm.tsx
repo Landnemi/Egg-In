@@ -2,6 +2,11 @@ import Lottie from "lottie-web";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import axios from 'axios'
+import { getSession } from "next-auth/react";
+
+
+
+
 
 interface IBirdForm {
   projectName: string;
