@@ -49,13 +49,13 @@ namespace FuglariApi.Services
 
         public async Task AddUserToProject(string newPersonEmail, int projectId, string inviterEmail)
         {
-            User user = await userRepository.GetUserByEmail(newPersonEmail);
-            if(user == null)
+            User newUser = await userRepository.GetUserByEmail(newPersonEmail);
+            if(newUser == null)
             { 
                 throw new ErrorCodeException(401, "USER", "User with email " + newPersonEmail + " does not exist.");
             }
             User inviter = await userRepository.GetUserByEmail(inviterEmail);
-            if (user == null)
+            if (inviter == null)
             {
                 throw new ErrorCodeException(401, "USER", "User with email " + inviterEmail + " does not exist.");
             }
@@ -69,12 +69,12 @@ namespace FuglariApi.Services
             { 
                 throw new ErrorCodeException(401, "DENIED", "You cannot invite people into projects you are not a part of.");
             }
-            Membership inviteeMembership = await projectRepository.CheckMembership(user.Id, projectId);
+            Membership inviteeMembership = await projectRepository.CheckMembership(newUser.Id, projectId);
             if (inviteeMembership != null)
             {
                 throw new ErrorCodeException(401, "DENIED", "You cannot invite people multiple times into projects");
             }
-            await projectRepository.AddUserToProject(user.Id, project.Id);
+            await projectRepository.AddUserToProject(newUser.Id, project.Id);
         }
 
         public async Task CreateDataset(CreateDatasetRequest request)
