@@ -3,6 +3,7 @@ import { Marker, Popup, useMap} from 'react-leaflet'
 import Loading from '../loading/Loading'
 import Form from '../form/BirdForm'
 import { signOut } from "next-auth/react"
+import UsersComponent from "../fetchInfo/FetchInfo"
 
 
 function InitialEvents(props) {
@@ -55,12 +56,7 @@ function InitialEvents(props) {
         <div>
           <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
             <Popup ref={popupElRef}>
-                <p>Lat: {position.lat}</p>
-                <p>Lng: {position.lng}</p>
-                <p>{props.name}</p> 
-                <p>{props.email}</p>
-                <p>meira er hægt að bæta hér!</p>
-                <br/>
+                <UsersComponent />
                 <button onClick={handleClick}>Create Landmark</button>
                 <button onClick={() => signOut()}>Sign out</button>
               </Popup>

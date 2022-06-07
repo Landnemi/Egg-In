@@ -1,6 +1,7 @@
 import Lottie from "lottie-web";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import axios from 'axios'
 
 interface IBirdForm {
   projectName: string;
@@ -28,6 +29,14 @@ const {
 
 const formSubmitHandler: SubmitHandler<IBirdForm> = (data: IBirdForm) => {
   console.log("form data is", data)
+  axios
+    .post(
+      '',
+      data,
+      {headers: { 'Content-Type': 'application/json'}}
+    )
+    .then(response => {console.log(response.data)})
+    .catch(error => {console.log(error.data)})
 }
 const birdForm = (
   <form onSubmit={handleSubmit(formSubmitHandler)} className="form">
