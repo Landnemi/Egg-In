@@ -3,7 +3,7 @@ import { Marker, Popup, useMap} from 'react-leaflet'
 import Loading from '../loading/Loading'
 import Form from '../form/BirdForm'
 import { signOut } from "next-auth/react"
-import * as L from "leaflet";
+
 
 function InitialEvents(props) {
     const [position, setPosition] = useState(null);    
@@ -15,9 +15,7 @@ function InitialEvents(props) {
 
     const {userData} = props;
 
-    const streamingIcon = new LeafIcon({
-      iconUrl: require("./icons/marker.png")
-    });
+
 
     useEffect(() => {
       map.locate().on("locationfound", function (e) {
@@ -59,7 +57,7 @@ function InitialEvents(props) {
       <Loading/>     
       ) : (
         <div>
-          <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef} icon={icon}>
+          <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
             <Popup ref={popupElRef}>
               <p>Create New Landmark</p>
                 <button onClick={handleClick}>Create Landmark</button>
