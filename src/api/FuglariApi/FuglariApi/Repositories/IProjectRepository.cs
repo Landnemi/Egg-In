@@ -23,5 +23,6 @@ namespace FuglariApi.Repositories
         public Task<LandmarkDto> GetLandmarkById(int landmarkId);
         public Task CreateLandmark(NewLandmark newLandmark);
         public Task<IEnumerable<Observation>> GetObservationsForLandmark(int landmarkId);
+        public Task<IEnumerable<User>> GetMembersForProject(int id);
     }
 }

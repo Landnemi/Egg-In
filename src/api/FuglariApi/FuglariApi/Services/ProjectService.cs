@@ -203,9 +203,53 @@ namespace FuglariApi.Services
             return await projectRepository.GetProjectsForUser(user.Id);
         }
 
+        public async Task<IEnumerable<ProjectDto>> GetProjectDtosForUser(string email)
+        {
+            User user = await userRepository.GetUserByEmail(email);
+            if (user == null)
+            {
+                throw new ErrorCodeException(401, "USER", "User with email " + email + " does not exist.");
+            }
+            IEnumerable<Project> projects = await GetProjectsForUser(email);
+            List<ProjectDto> projectDtos = new List<ProjectDto>();
+            foreach (Project project in projects)
+            {
+                ProjectDto projectDto = new ProjectDto();
+                projectDto.Id = project.Id;
+                projectDto.Title = project.Title;
+                List<DatasetDto> datasetDtoList = new List<DatasetDto>();
+                IEnumerable<Dataset> _datasets = await projectRepository.GetDatasetsForProject(project.Id);
+                foreach (Dataset d in _datasets)
+                {
+                    IEnumerable<LandmarkDto> l = await projectRepository.GetLandmarksForDataset(d.Id);
+                    var temp = new DatasetDto
+                    {
+                        Landmarks = l,
+                        Title = d.Title,
+                        Id = d.Id
+                    };
+                    datasetDtoList.Add(temp);
+                }
+                projectDto.Datasets = datasetDtoList;
+                projectDto.Members = await projectRepository.GetMembersForProject(project.Id);
+                projectDtos.Add(projectDto);
+            }
+            return projectDtos;
+        }
+
         public async Task UpdateLandmark(Landmark landmark)
         {
             await projectRepository.UpdateLandmark(landmark);
+        }
+
+        public async Task<IEnumerable<Project>> ProjectsForUser(string email)
+        {
+            User user = await userRepository.GetUserByEmail(email);
+            if (user == null)
+            {
+                throw new ErrorCodeException(401, "USER", "User with email " + email + " does not exist.");
+            }
+            return await projectRepository.GetProjectsForUser(user.Id);
         }
     }
 }

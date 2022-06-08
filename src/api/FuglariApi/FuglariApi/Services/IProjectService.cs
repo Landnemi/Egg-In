@@ -18,10 +18,12 @@ namespace FuglariApi.Services
         public Task<LandmarkDto> GetLandmarkById(int landmarkId);
         public Task<Dataset> GetDatasetById(int observationId);
         public Task<Project> GetProjectById(int projectId);
+        public Task<IEnumerable<Project>> ProjectsForUser(string email);
         public Task<IEnumerable<Project>> GetProjectsForUser(string email);
         public Task AddUserToProject(string newPersonEmail, int projectId, string inviterEmail);
         public Task UpdateLandmark(Landmark landmark);
         public Task<IEnumerable<Dataset>> GetDatasetsForProject(int projectId);
         Task<IEnumerable<DatasetDto>> GetDatasetsForPerson(string email);
+        public Task<IEnumerable<ProjectDto>> GetProjectDtosForUser(string email);
     }
 }

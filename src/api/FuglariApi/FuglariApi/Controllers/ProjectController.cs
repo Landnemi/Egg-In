@@ -21,11 +21,7 @@ namespace FuglariApi.Controllers
             projectService = service;
         }
 
-        [HttpGet("user/{email}")]
-        public async Task<IActionResult> GetProjectsForPerson(string email)
-        {
-            return Ok(await projectService.GetProjectsForUser(email));
-        }
+        
 
         [HttpPost]
         public async Task<IActionResult> CreateNewProject([FromBody] CreateProjectRequest request)
@@ -44,7 +40,11 @@ namespace FuglariApi.Controllers
         {
             return Ok(await projectService.GetDatasetsForProject(projectId));
         }
-
+        [HttpGet("/projects/{email}")]
+        public async Task<IActionResult> GetProjectsForPerson(string email)
+        {
+            return Ok(await projectService.GetProjectDtosForUser(email));
+        }
         [HttpGet("/datasets/{email}")]
         public async Task<IActionResult> GetDatasetsForPerson(string email)
         {

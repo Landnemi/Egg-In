@@ -219,5 +219,20 @@ FROM public.memberships";
                 return await connection.QueryAsync<Observation>(queryBuilder.ToString());
             }
         }
+
+        private string selectProjectMembersSQL = $@"SELECT 
+        u.id as {nameof(User.Id)},
+        u.email as {nameof(User.Email)}
+        from public.users u right join (select * from memberships where project_id = @ProjectId) m on m.user_id = u.id
+";
+        public async Task<IEnumerable<User>> GetMembersForProject(int projectId)
+        {
+            StringBuilder queryBuilder = new StringBuilder(selectProjectMembersSQL);
+            using (var connection = new NpgsqlConnection(connectionString))
+            {
+                connection.Open();
+                return await connection.QueryAsync<User>(queryBuilder.ToString(), new { ProjectId = projectId });
+            }
+        }
     }
 }
