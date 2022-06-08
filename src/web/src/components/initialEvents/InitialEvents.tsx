@@ -3,7 +3,6 @@ import { Marker, Popup, useMap} from 'react-leaflet'
 import Loading from '../loading/Loading'
 import Form from '../form/BirdForm'
 import { signOut } from "next-auth/react"
-import UsersComponent from "../fetchInfo/FetchInfo"
 
 
 function InitialEvents(props) {
@@ -14,9 +13,9 @@ function InitialEvents(props) {
     const popupElRef = useRef(null);
 
 
-  const {userData} = props;
+    const {userData} = props;
 
-    console.log(position)
+
 
     useEffect(() => {
       map.locate().on("locationfound", function (e) {
@@ -58,15 +57,31 @@ function InitialEvents(props) {
       <Loading/>     
       ) : (
         <div>
-          {/* <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
+          <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
             <Popup ref={popupElRef}>
-                <UsersComponent email={props.email}/>
+              <p>Create New Landmark</p>
                 <button onClick={handleClick}>Create Landmark</button>
                 <button onClick={() => signOut()}>Sign out</button>
               </Popup>
-          </Marker> */}
-          
-          { form ? (<Form name={props.name} email={props.email} lat={position.lat} lng={position.lng} changeForm={form => setForm(form)}/>) : (<></>)}
+          </Marker>
+        
+        {userData.map((dataset, didx)=>{
+        return dataset.landmarks.map((landmark,lidx) => { return <Marker key={`${didx}-${lidx}`} position={[landmark.latitude, landmark.longitude]}  >
+          <Popup>
+            <p>id: {landmark.id}</p>
+            <p>Dataset ID: {landmark.datasetId}</p>
+            <p>Lat: {landmark.latitude}</p>
+            <p>Lng: {landmark.longitude}</p>
+            <p>Date created: {landmark.dateCreated}</p>
+            <p>Status: { landmark.status}</p>
+            <p>Progress: { landmark.progress}</p>
+            <button onClick={handleClick}>Create Landmark</button>
+            <button onClick={() => signOut()}>Sign out</button>
+          </Popup>
+        </Marker>
+      })
+      })}
+          { form ? (<Form name={props.name} email={props.email} lat={position.lat} userData={userData} lng={position.lng} changeForm={form => setForm(form)}/>) : (<></>)}
         </div>
       );
   }

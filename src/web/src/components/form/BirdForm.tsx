@@ -5,14 +5,11 @@ import axios from 'axios'
 import { getSession } from "next-auth/react";
 
 
-
-
-
 interface IBirdForm {
-  projectName: string;
-  date: string;
-  lat: string;
-  lng: string;
+  email: string;
+  datasetId: string;
+  latitude: string;
+  longitude: string;
   status: string;
   progress: string;
 
@@ -36,52 +33,52 @@ const formSubmitHandler: SubmitHandler<IBirdForm> = (data: IBirdForm) => {
   console.log("form data is", data)
   axios
     .post(
-      '',
+      'http://fuglari.is:5000/api/Project/landmark',
       data,
       {headers: { 'Content-Type': 'application/json'}}
     )
-    .then(response => {console.log(response.data)})
+    .then(response => window.location.reload())
     .catch(error => {console.log(error.data)})
 }
 const birdForm = (
   <form onSubmit={handleSubmit(formSubmitHandler)} className="form">
-    <label htmlFor="projectName">Project Name *</label>
+    <label htmlFor="datasetId">Project Name *</label>
     <br/>
-    <input {...register('projectName')}/>
-    <br/>
-    <br/>
-    <label htmlFor="date">Last updated, *</label>
-    <br/>
-    <input defaultValue={Date().toLocaleString()} {...register('date')}/>
-    <br/>
-    <br/>
-    <label htmlFor="lat">Lat, *</label>
-    <br/>
-    <input defaultValue={props.lat} {...register('lat')}/>
+    <select {...register("datasetId")}>
+      { props.userData.map((dataset, index) => 
+      <option key={index} value={dataset.id}>{dataset.title}</option>
+     )}
+    </select>
     <br/>
     <br/>
-    <label htmlFor="lng">Lng, *</label>
+    <label htmlFor="latitude">Lat, *</label>
     <br/>
-    <input defaultValue={props.lng} {...register('lng')}/>
+    <input defaultValue={props.lat} {...register('latitude')}/>
+    <br/>
+    <br/>
+    <label htmlFor="longitude">Lng, *</label>
+    <br/>
+    <input defaultValue={props.lng} {...register('longitude')}/>
     <br/>
     <br/>
     <label htmlFor="status">Status, *</label>
     <br/>
     <select {...register("status")}>
-      <option value="Eggs">Eggs</option>
-      <option value="Hatched">Hatched</option>
-      <option value="Abandoned">Abandoned</option>
+      <option value="1">Eggs</option>
+      <option value="2">Hatched</option>
+      <option value="3">Abandoned</option>
     </select>
     <br/>
     <br/>
     <label htmlFor="Progress">Progress, *</label>
     <br/>
     <select {...register("progress")}>
-      <option value="In progress">In progress</option>
-      <option value="Done">Done</option>
-      <option value="Cancelled">Cancelled</option>
+      <option value="1">In progress</option>
+      <option value="2">Done</option>
+      <option value="3">Cancelled</option>
     </select>
     <br/>
+    <input style={{ display:"none"}} defaultValue={props.email} {...register('email')}/>
     <br/>
     <input type="submit" onClick={() => handleClick()}/>
     <button type="close" onClick={() => props.changeForm(false)} >{close ? "Cancel" : "Close"}</button>
