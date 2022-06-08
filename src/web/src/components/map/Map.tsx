@@ -32,7 +32,7 @@ const Map = (props) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <InitialEvents name={props.name} email={props.email} userData={userData} />
-      <ProjectControls userData={userData} />
+      <ProjectControls userData={userData} email={props.email}/>
     </MapContainer>   
   </>
   );

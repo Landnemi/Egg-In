@@ -44,7 +44,9 @@ function InitialEvents(props) {
       map.closePopup();
     }
 
-
+    const datasets = userData.map(x=>x.datasets).flat()
+    console.log(datasets);
+    
     useEffect(() => {
       map.locate().on("locationerror", function (e) {
         map.setView([64.1291137997281, -21.918854122890924]);
@@ -65,7 +67,7 @@ function InitialEvents(props) {
               </Popup>
           </Marker>
         
-        {userData.map((dataset, didx)=>{
+        {datasets.map((dataset, didx)=>{
         return dataset.landmarks.map((landmark,lidx) => { return <Marker key={`${didx}-${lidx}`} position={[landmark.latitude, landmark.longitude]}  >
           <Popup>
             <p>id: {landmark.id}</p>

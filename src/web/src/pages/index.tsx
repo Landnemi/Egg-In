@@ -13,12 +13,14 @@ export async function getServerSideProps(context) {
   // this creates a new user with email if he does not exist. 
   const user_res = await fetch(`http://fuglari.is:5000/User/get_or_create/${session?.user?.email}`)
   // this gets a list of things that the user owns. 
-  const res = await fetch(`http://fuglari.is:5000/projects/${session?.user?.email}`)
+  const res = await fetch(`https://api.fuglari.is/projects/${session?.user?.email}`)
   const data = await res.json()
-  data.datasets = data.map(x=>x.dataset)
+  data.datasets = data.map(x=>x.datasets)
+  console.log(data);
+  
   // const {data, error} = useSWR(`http://fuglari.is:5000/datasets/${props.email}`, fetcher, {})
   // Pass data to the page via props
-  return { props: { data } }
+  return { props: { data , session } }
 }
 
 export default function Home(props) {

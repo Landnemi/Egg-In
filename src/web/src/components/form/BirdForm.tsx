@@ -23,6 +23,8 @@ function handleClick() {
   setClose(false)
 }
 
+const datasets = props.userData.map(x=>x.datasets).flat()
+
 const {
   register, 
   handleSubmit, 
@@ -45,7 +47,7 @@ const birdForm = (
     <label htmlFor="datasetId">Project Name *</label>
     <br/>
     <select {...register("datasetId")}>
-      { props.userData.map((dataset, index) => 
+      { datasets.map((dataset, index) => 
       <option key={index} value={dataset.id}>{dataset.title}</option>
      )}
     </select>
