@@ -44,7 +44,7 @@ const formSubmitHandler: SubmitHandler<IBirdForm> = (data: IBirdForm) => {
 }
 const birdForm = (
   <form onSubmit={handleSubmit(formSubmitHandler)} className="form">
-    <label htmlFor="datasetId">Project Name *</label>
+    <label htmlFor="datasetId">Dataset Name *</label>
     <br/>
     <select {...register("datasetId")}>
       { datasets.map((dataset, index) => 

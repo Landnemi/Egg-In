@@ -4,47 +4,22 @@ import Loading from '../loading/Loading'
 import Form from '../form/BirdForm'
 import { signOut } from "next-auth/react"
 import PatchForm from '../patchForm/PatchForm'
-
+import LandmarkMarker from './LandmarkMarker';
+import ProjectControls from '../ProjectControls/ProjectControls'
 
 function InitialEvents(props) {
-    const [position, setPosition] = useState(null);    
     const map = useMap();
-    const markerRef = useRef(null)
-    const [form, setForm] = useState(false);
-    const popupElRef = useRef(null);
 
-
-    const {userData} = props;
-
-
-
+    
+    const [position, setPosition] = useState(null);  
     useEffect(() => {
       map.locate().on("locationfound", function (e) {
-        setPosition(e.latlng);
         map.flyTo(e.latlng, map.getZoom(), {animate: false});
+        setPosition(e.latlng);
       });
     }, []);
 
-    const eventHandlers = useMemo(
-      () => ({
-        dragend() {
-          const marker = markerRef.current
-          //console.log(marker.getLatLng())
-          if (marker != null) {
-            setPosition(marker.getLatLng())
-          }
-        },
-      }),
-      [],
-    )
-
-    function handleClick() {
-      setForm(true)
-      // if (!popupElRef.current) return;
-      // popupElRef.current._close();
-      map.closePopup();
-    }
-
+    const {userData} = props;
 
     const datasets = userData.map(x=>x.datasets).flat()
     console.log(datasets);
@@ -58,35 +33,12 @@ function InitialEvents(props) {
 
     
     return position === null ? (
-      <Loading/>     
+        <Loading/>     
       ) : (
         <div>
-          <Marker draggable='true' position={position} eventHandlers={eventHandlers} ref={markerRef}>
-            <Popup ref={popupElRef}>
-              <p>Create New Landmark</p>
-                <button onClick={handleClick}>Create Landmark</button>
-              </Popup>
-          </Marker>
-        
-        {datasets.map((dataset, didx)=>{
-        return dataset.landmarks.map((landmark,lidx) => { return <Marker key={`${didx}-${lidx}`} position={[landmark.latitude, landmark.longitude]}  >
-          <Popup>
-            <p>id: {landmark.id}</p>
-            <p>Dataset ID: {landmark.datasetId}</p>
-            <p>Lat: {landmark.latitude}</p>
-            <p>Lng: {landmark.longitude}</p>
-            <p>Date created: {landmark.dateCreated}</p>
-            <p>Status: { landmark.status}</p>
-            <p>Progress: { landmark.progress}</p>
-            <button onClick={handleClick}>Edit Landmark</button>
-            <PatchForm id={landmark.id} name={props.name} email={props.email} lat={position.lat} userData={userData} lng={position.lng} changeForm={form => setForm(form)}/>
-          </Popup>
-        </Marker>
-      })
-      })}
-
-      {form ? <Form name={props.name} email={props.email} lat={position.lat} userData={userData} lng={position.lng} changeForm={form => setForm(form)}/> : <></>}
-    </div>
+          {datasets.map((dataset, didx)=>{ return dataset.landmarks.map((landmark,lidx) => { console.log(landmark); return <LandmarkMarker key={`${didx}-${lidx}`} landmark={landmark} userData={userData} /> }) })}
+          <ProjectControls userData={userData} email={props.email} />
+        </div>
   );
 }
 
