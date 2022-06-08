@@ -3,6 +3,8 @@ import {signIn, signOut, useSession, getSession } from "next-auth/react"
 import Link from "next/link";
 // import useSWR from 'swr'
 import axios from 'axios'
+import Head from 'next/head'
+
 
 
 const fetcher = async (url) => axios.get(url).then(response => response.data)
@@ -30,13 +32,21 @@ export default function Home(props) {
 
   if(session) {
     return (
+      <>
+      <Head>
+        <title>My page title</title>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"/>
+      </Head>
       <main>
         <div>
+
+      
           <div id="map">
             <MapWithNoSSR name={session.user?.name} email={session.user?.email} userData={props.data}/>
           </div>
         </div>
       </main>
+      </>
   )}
 
   return (
