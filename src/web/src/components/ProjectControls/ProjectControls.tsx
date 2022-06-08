@@ -70,25 +70,18 @@ const ProjectControls = (props) => {
     const selectOptions = userData.map(x=>{ return {'value':x.id, 'label':x.title} })
 
     return (
-        <div style={{position: 'absolute', top: '10px', right:'10px', width:'200px', zIndex: '10000'}}> 
-
-            <Select value={selectedProject} options={selectOptions} onChange={handleChange}/>
-            
+        <div style={{position: 'absolute', top: '10px', right:'10px', width:'200px', zIndex: '10000'}}>             
             <button onClick={()=>{setShowDatasetForm(!showDatasetForm)}}>Create Dataset</button>
-            {showDatasetForm&&<div><DatasetForm userData={userData} email={props.email} /></div>}
+            {showDatasetForm&&<div><DatasetForm userData={userData} email={props.email} showDatasetForm={setShowDatasetForm} /></div>}
            
             <button onClick={handleStartMarking}>{isAddingLandmark? "Cancel creating Landmark" : "Create Landmark" }</button> 
             {isAddingLandmark  && <>
-            
-                
                 <Marker draggable='true' position={markerPosition} eventHandlers={eventHandlers} ref={markerRef}>
                     <Popup ref={popupElRef}>
                     {form &&  <Form name={props.name} email={props.email} lat={markerPosition.lat} userData={userData} lng={markerPosition.lng} changeForm={form => setForm(form)}/> }
-            
-                                 <button onClick={handleClick}>Create Landmark</button>
+                        <button onClick={handleClick}>Create Landmark</button>
                     </Popup>
                 </Marker>
-  
             </>
             
             }

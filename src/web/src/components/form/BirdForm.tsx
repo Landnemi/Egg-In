@@ -17,10 +17,10 @@ interface IBirdForm {
 
 function Form(props) {
 
-const [close, setClose] = useState(false);
+const [close, setClose] = useState(true);
 
 function handleClick() {
-  setClose(true)
+  setClose(false)
 }
 
 const datasets = props.userData.map(x=>x.datasets).flat()

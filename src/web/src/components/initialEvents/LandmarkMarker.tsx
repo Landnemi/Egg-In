@@ -6,29 +6,17 @@ import { signOut } from "next-auth/react"
 import PatchForm from '../patchForm/PatchForm'
 
 
-function LandmarkMarker(props) {
-    const [position, setPosition] = useState(null);    
+function LandmarkMarker(props) { 
     const map = useMap();
-    const markerRef = useRef(null)
-    const [form, setForm] = useState(false);
-    const popupElRef = useRef(null);
-
     const {landmark, userData, key} = props;
-
-
     const [isEditing, setIsEditing] = useState(false);
 
-
     function handleClick() {
-      setForm(true)
-      // if (!popupElRef.current) return;
+      setIsEditing(true)
+      //if (!popupElRef.current) return;
       // popupElRef.current._close();
       map.closePopup();
     }
-
-
-   
-    
 
     return  (<Marker key={key} position={[landmark.latitude, landmark.longitude]}  >
         <Popup>
@@ -40,14 +28,9 @@ function LandmarkMarker(props) {
         <p>Status: { landmark.status}</p>
         <p>Progress: { landmark.progress}</p>
         <button onClick={handleClick}>Edit Landmark</button>
-
-        {isEditing && <PatchForm id={landmark.id} name={props.name} email={props.email} lat={position.lat} userData={userData} lng={position.lng} changeForm={form => setForm(form)}/> }
+        {isEditing ? <PatchForm id={landmark.id} name={props.name} email={props.email} lat={landmark.latitude} userData={userData} lng={landmark.longitude} changeEditing={isEditing => {setIsEditing(isEditing)}} /> : <></>}
         </Popup>
     </Marker>)
-  
-  
-
-  
 }
 
 export default LandmarkMarker

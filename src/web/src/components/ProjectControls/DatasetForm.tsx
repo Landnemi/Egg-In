@@ -36,19 +36,19 @@ function DatasetForm(props){
 
     return (
     <form onSubmit={handleSubmit(datasetFormSubmitHandler)} className="form">
-    <label htmlFor="datasetId">Project Name *</label>
-    <br/>
-    <select {...register("projectId")}>
-    { props.userData.map((project, index) => 
-    <option key={index} value={project.id}>{project.title}</option>
-    )}
-    </select>
-    <label htmlFor="latitude">Title, *</label>
-    <br/>
-    <input defaultValue={props.lat} {...register('title')}/>
-    <input style={{ display:"none"}} defaultValue={props.email} {...register('email')}/>
-    <input type="submit" onClick={() => handleClick()}/>
-    <button type="close" onClick={() => props.changeForm(false)} >{close ? "Cancel" : "Close"}</button>
+        <label htmlFor="datasetId">Project Name *</label>
+        <br/>
+        <select {...register("projectId")}>
+            { props.userData.map((project, index) => 
+                <option key={index} value={project.id}>{project.title}</option>
+            )}
+        </select>
+        <label htmlFor="latitude">Title, *</label>
+        <br/>
+        <input defaultValue={props.lat} {...register('title')}/>
+        <input style={{ display:"none"}} defaultValue={props.email} {...register('email')}/>
+        <input type="submit" onClick={() => handleClick()}/>
+        <button type="close" onClick={() => props.showDatasetForm(false)} >Close</button>
     </form>
   );
 }

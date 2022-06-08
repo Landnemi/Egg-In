@@ -36,7 +36,11 @@ function InitialEvents(props) {
         <Loading/>     
       ) : (
         <div>
-          {datasets.map((dataset, didx)=>{ return dataset.landmarks.map((landmark,lidx) => { console.log(landmark); return <LandmarkMarker key={`${didx}-${lidx}`} landmark={landmark} userData={userData} /> }) })}
+          {datasets.map((dataset, didx)=>{ 
+            return dataset.landmarks.map((landmark,lidx) => {  
+              return <LandmarkMarker key={`${didx}-${lidx}`} landmark={landmark} userData={userData} /> 
+              }) 
+            })}
           <ProjectControls userData={userData} email={props.email} />
         </div>
   );

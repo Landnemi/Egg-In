@@ -18,10 +18,10 @@ interface IBirdForm {
 
 function PatchForm(props) {
 
-const [close, setClose] = useState(true);
+const [close, setClose] = useState(false);
 
 function handleClick() {
-  setClose(false)
+  setClose(true)
 }
 
 const datasets = props.userData.map(x=>x.datasets).flat()
@@ -85,7 +85,7 @@ const birdForm = (
     <br/>
     <br/>
     <input type="submit" onClick={() => handleClick()}/>
-    <button type="close" onClick={() => props.changeForm(false)} >{close ? "Cancel" : "Close"}</button>
+    <button type="close" onClick={() => props.changeEditing(false)} >{close ? "Cancel" : "Close"}</button>
   </form>
 );
 
