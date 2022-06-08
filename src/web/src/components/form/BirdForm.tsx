@@ -33,7 +33,7 @@ const formSubmitHandler: SubmitHandler<IBirdForm> = (data: IBirdForm) => {
   console.log("form data is", data)
   axios
     .post(
-      'http://fuglari.is:5000/api/Project/landmark',
+      'https://api.fuglari.is/api/Project/landmark',
       data,
       {headers: { 'Content-Type': 'application/json'}}
     )

@@ -6,7 +6,7 @@ import InitialEvents from "../initialEvents/InitialEvents";
 import { useState } from "react";
 import { LatLng } from "leaflet";
 import { signOut } from "next-auth/react"
-
+import ProjectControls from '../ProjectControls/ProjectControls'
 
 
 const Map = (props) => {
@@ -32,7 +32,7 @@ const Map = (props) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <InitialEvents name={props.name} email={props.email} userData={userData} />
-
+      <ProjectControls userData={userData} />
     </MapContainer>   
   </>
   );
