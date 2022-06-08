@@ -6,21 +6,22 @@ import axios from 'axios'
 
 
 interface IBirdForm {
-  email: string;
-  datasetId: string;
+  id: number;  
+  datasetId: number;
   latitude: string;
   longitude: string;
+  dateCreated: string;
   status: string;
   progress: string;
 
 }
 
-function Form(props) {
+function PatchForm(props) {
 
-const [close, setClose] = useState(false);
+const [close, setClose] = useState(true);
 
 function handleClick() {
-  setClose(true)
+  setClose(false)
 }
 
 const datasets = props.userData.map(x=>x.datasets).flat()
@@ -34,8 +35,8 @@ const {
 const formSubmitHandler: SubmitHandler<IBirdForm> = (data: IBirdForm) => {
   console.log("form data is", data)
   axios
-    .post(
-      'https://api.fuglari.is/api/Project/landmark',
+    .patch(
+      'https://api.fuglari.is/api/Project/landmarks',
       data,
       {headers: { 'Content-Type': 'application/json'}}
     )
@@ -51,6 +52,8 @@ const birdForm = (
       <option key={index} value={dataset.id}>{dataset.title}</option>
      )}
     </select>
+    <br/>
+    <input defaultValue={props.id} {...register('id')}/>
     <br/>
     <br/>
     <label htmlFor="latitude">Lat, *</label>
@@ -80,7 +83,6 @@ const birdForm = (
       <option value="3">Cancelled</option>
     </select>
     <br/>
-    <input style={{ display:"none"}} defaultValue={props.email} {...register('email')}/>
     <br/>
     <input type="submit" onClick={() => handleClick()}/>
     <button type="close" onClick={() => props.changeForm(false)} >{close ? "Cancel" : "Close"}</button>
@@ -96,4 +98,4 @@ return (
     )
 }
 
-export default Form
+export default PatchForm

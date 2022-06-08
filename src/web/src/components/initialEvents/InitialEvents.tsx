@@ -3,6 +3,7 @@ import { Marker, Popup, useMap} from 'react-leaflet'
 import Loading from '../loading/Loading'
 import Form from '../form/BirdForm'
 import { signOut } from "next-auth/react"
+import PatchForm from '../patchForm/PatchForm'
 
 
 function InitialEvents(props) {
@@ -44,6 +45,7 @@ function InitialEvents(props) {
       map.closePopup();
     }
 
+
     const datasets = userData.map(x=>x.datasets).flat()
     console.log(datasets);
     
@@ -63,7 +65,6 @@ function InitialEvents(props) {
             <Popup ref={popupElRef}>
               <p>Create New Landmark</p>
                 <button onClick={handleClick}>Create Landmark</button>
-                <button onClick={() => signOut()}>Sign out</button>
               </Popup>
           </Marker>
         
@@ -77,15 +78,16 @@ function InitialEvents(props) {
             <p>Date created: {landmark.dateCreated}</p>
             <p>Status: { landmark.status}</p>
             <p>Progress: { landmark.progress}</p>
-            <button onClick={handleClick}>Create Landmark</button>
-            <button onClick={() => signOut()}>Sign out</button>
+            <button onClick={handleClick}>Edit Landmark</button>
+            <PatchForm id={landmark.id} name={props.name} email={props.email} lat={position.lat} userData={userData} lng={position.lng} changeForm={form => setForm(form)}/>
           </Popup>
         </Marker>
       })
       })}
-          { form ? (<Form name={props.name} email={props.email} lat={position.lat} userData={userData} lng={position.lng} changeForm={form => setForm(form)}/>) : (<></>)}
-        </div>
-      );
-  }
 
-  export default InitialEvents
+      {form ? <Form name={props.name} email={props.email} lat={position.lat} userData={userData} lng={position.lng} changeForm={form => setForm(form)}/> : <></>}
+    </div>
+  );
+}
+
+export default InitialEvents
