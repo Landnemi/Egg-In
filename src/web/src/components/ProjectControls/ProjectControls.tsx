@@ -55,6 +55,15 @@ const ProjectControls = (props) => {
         [],
     )
 
+    const [locate, setLocate] = useState(null);  
+
+    const locateMe = () => {
+      map.locate().on("locationfound", function (e) {
+        map.flyTo(e.latlng, map.getZoom(), {animate: false});
+        setLocate(e.latlng);
+      });
+    }
+
     const handleStartMarking = () => {
         if(!isAddingLandmark){
             setMarkerPosition(map.getCenter())
@@ -73,8 +82,8 @@ const ProjectControls = (props) => {
         <div style={{position: 'absolute', top: '10px', right:'10px', width:'200px', zIndex: '10000'}}>             
             <button onClick={()=>{setShowDatasetForm(!showDatasetForm)}}>Create Dataset</button>
             {showDatasetForm&&<div><DatasetForm userData={userData} email={props.email} showDatasetForm={setShowDatasetForm} /></div>}
-           
             <button onClick={handleStartMarking}>{isAddingLandmark? "Cancel creating Landmark" : "Create Landmark" }</button> 
+            <button onClick={locateMe}>My Location</button>
             {isAddingLandmark  && <>
                 <Marker draggable='true' position={markerPosition} eventHandlers={eventHandlers} ref={markerRef}>
                     <Popup ref={popupElRef}>

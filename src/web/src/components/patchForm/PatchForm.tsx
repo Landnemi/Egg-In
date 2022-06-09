@@ -69,18 +69,22 @@ const birdForm = (
     <label htmlFor="status">Status, *</label>
     <br/>
     <select {...register("status")}>
+    <optgroup>
       <option value="1">Eggs</option>
       <option value="2">Hatched</option>
       <option value="3">Abandoned</option>
+      </optgroup>
     </select>
     <br/>
     <br/>
     <label htmlFor="Progress">Progress, *</label>
     <br/>
     <select {...register("progress")}>
+    <optgroup>
       <option value="1">In progress</option>
       <option value="2">Done</option>
       <option value="3">Cancelled</option>
+      </optgroup>
     </select>
     <br/>
     <br/>
