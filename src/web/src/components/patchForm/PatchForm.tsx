@@ -89,7 +89,7 @@ const birdForm = (
     <br/>
     <br/>
     <input type="submit" onClick={() => handleClick()}/>
-    
+    <button onClick={() => { setTimeout(()=>props.changeEditing(false), 100)  } } >Cancel</button>
   </form>
 );
 

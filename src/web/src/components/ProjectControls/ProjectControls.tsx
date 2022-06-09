@@ -87,7 +87,7 @@ const ProjectControls = (props) => {
             {isAddingLandmark  && <>
                 <Marker draggable='true' position={markerPosition} eventHandlers={eventHandlers} ref={markerRef}>
                     <Popup ref={popupElRef}>
-                    {form &&  <Form name={props.name} email={props.email} lat={markerPosition.lat} userData={userData} lng={markerPosition.lng} changeForm={form => setForm(form)}/> }
+                        {form &&  <Form name={props.name} email={props.email} lat={markerPosition.lat} userData={userData} lng={markerPosition.lng} changeForm={form => setForm(form)}/> }
                         <button onClick={handleClick}>Create Landmark</button>
                     </Popup>
                 </Marker>
