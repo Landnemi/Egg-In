@@ -83,7 +83,9 @@ const birdForm = (
     <input style={{ display:"none"}} defaultValue={props.email} {...register('email')}/>
     <br/>
     <input type="submit" onClick={() => handleClick()}/>
-    <button type="close" onClick={() => props.changeForm(false)} >{close ? "Cancel" : "Close"}</button>
+    
+    <button onClick={() => { setTimeout(()=>props.changeForm(false), 100)  } } >Cancel</button>
+    {/* <button type="close" onClick={() => props.changeForm(false)} >{close ? "Cancel" : "Close"}</button> */}
   </form>
 );
 

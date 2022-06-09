@@ -12,10 +12,13 @@ function LandmarkMarker(props) {
     const [isEditing, setIsEditing] = useState(false);
 
     function handleClick() {
-      setIsEditing(true)
+      
       //if (!popupElRef.current) return;
       // popupElRef.current._close();
-      map.closePopup();
+     
+        setIsEditing(true)
+        //map.closePopup();
+    
     }
 
     return  (<Marker key={key} position={[landmark.latitude, landmark.longitude]}  >
