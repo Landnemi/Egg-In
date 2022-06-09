@@ -78,3 +78,10 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 25px;
   }
+  
+body {
+  font-size: 16px;
+}
+input[type="text"] {
+  font-size: inherit;
+}
