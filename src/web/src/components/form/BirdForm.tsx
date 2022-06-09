@@ -55,12 +55,12 @@ const birdForm = (
     <br/>
     <label htmlFor="latitude">Lat, *</label>
     <br/>
-    <input defaultValue={props.lat} {...register('latitude')}/>
+    <input style={{fontSize: "16px"}} defaultValue={props.lat} {...register('latitude')}/>
     <br/>
     <br/>
     <label htmlFor="longitude">Lng, *</label>
     <br/>
-    <input defaultValue={props.lng} {...register('longitude')}/>
+    <input style={{fontSize: "16px"}} defaultValue={props.lng} {...register('longitude')}/>
     <br/>
     <br/>
     <label htmlFor="status">Status, *</label>

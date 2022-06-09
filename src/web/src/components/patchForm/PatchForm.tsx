@@ -24,6 +24,7 @@ function handleClick() {
   setClose(true)
 }
 
+
 const datasets = props.userData.map(x=>x.datasets).flat()
 
 const {
@@ -53,17 +54,17 @@ const birdForm = (
      )}
     </select>
     <br/>
-    <input defaultValue={props.id} {...register('id')}/>
+    <input style={{fontSize: "16px"}} defaultValue={props.id} {...register('id')}/>
     <br/>
     <br/>
     <label htmlFor="latitude">Lat, *</label>
     <br/>
-    <input defaultValue={props.lat} {...register('latitude')}/>
+    <input style={{fontSize: "16px"}} defaultValue={props.lat} {...register('latitude')}/>
     <br/>
     <br/>
     <label htmlFor="longitude">Lng, *</label>
     <br/>
-    <input defaultValue={props.lng} {...register('longitude')}/>
+    <input style={{fontSize: "16px"}} defaultValue={props.lng} {...register('longitude')}/>
     <br/>
     <br/>
     <label htmlFor="status">Status, *</label>
