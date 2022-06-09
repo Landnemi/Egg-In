@@ -85,7 +85,7 @@ const birdForm = (
     <br/>
     <br/>
     <input type="submit" onClick={() => handleClick()}/>
-    <button type="close" onClick={() => props.changeEditing(false)} >{close ? "Cancel" : "Close"}</button>
+    
   </form>
 );
 
