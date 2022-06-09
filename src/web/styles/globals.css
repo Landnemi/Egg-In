@@ -79,9 +79,6 @@ body {
   font-size: 25px;
   }
   
-body {
-  font-size: 16px;
-}
-input[type="text"] {
-  font-size: inherit;
-}
+
+body { font-size: 16px; }
+input, select { font-size: 100%; }
